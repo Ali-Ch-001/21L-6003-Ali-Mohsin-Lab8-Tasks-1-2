@@ -2,10 +2,14 @@
 import os
 import joblib
 import numpy as np
-from flask import Flask, render_template, request, redirect, url_for, session, flash
+from flask import Flask, render_template, request, redirect, url_for, session, flash, jsonify
 
 APP_ROOT = os.path.dirname(__file__)
 MODEL_DIR = os.path.join(APP_ROOT, "models")
+
+# Developer 2: Added API configuration
+API_VERSION = "v1"
+API_PREFIX = "/api/v1"
 
 # Load artifacts
 model = joblib.load(os.path.join(MODEL_DIR, "house_price_model.pkl"))
@@ -39,7 +43,10 @@ app = Flask(__name__)
 app.config['TEMPLATES_AUTO_RELOAD'] = True
 app.secret_key = 'dev_secret_key_12345'  # Developer 1 added this
 
-# Developer 1: Added login functionality
+# ============================================
+# Authentication Routes (Developer 1)
+# ============================================
+
 @app.route("/login", methods=["GET", "POST"])
 def login():
     """Login route added by Developer 1"""
@@ -62,6 +69,32 @@ def logout():
     session.clear()
     flash("Logged out successfully", "info")
     return redirect(url_for("login"))
+
+# ============================================
+# API Routes (Developer 2)
+# ============================================
+
+@app.route(f"{API_PREFIX}/health", methods=["GET"])
+def api_health():
+    """API health check endpoint added by Developer 2"""
+    return jsonify({
+        "status": "healthy",
+        "version": API_VERSION,
+        "model_loaded": model is not None,
+        "features": len(feature_list)
+    })
+
+@app.route(f"{API_PREFIX}/features", methods=["GET"])
+def api_features():
+    """Get list of model features - Developer 2"""
+    return jsonify({
+        "features": feature_list,
+        "count": len(feature_list)
+    })
+
+# ============================================
+# Original Routes
+# ============================================
 
 app = Flask(__name__)
 app.config['TEMPLATES_AUTO_RELOAD'] = True
