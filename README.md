@@ -1,327 +1,367 @@
 # MLOps Lab 8 - GitHub & DVC
 
-**Student:** Ali Mohsin (21L-6003)  
-**Lab:** Tasks 1+2
+# 🚀 Complete Execution Commands - Lab 8
 
-## Project Overview
-
-This project demonstrates:
-1. **Collaborative Flask Development with Git** - Managing merge conflicts in a team environment
-2. **DVC-Based ML Pipeline** - Reproducible machine learning workflow with data version control
+## Student: Ali Mohsin (21L-6003)
 
 ---
 
-## Problem Statement 1: Collaborative Flask Development
+## ✅ **TASK 2: DVC ML Pipeline**
 
-### Objective
-Simulate collaborative development on a Flask application with multiple team members working on the same codebase, creating and resolving merge conflicts.
+### Pipeline Results:
+The DVC ML pipeline has been successfully executed! Here are the results:
 
-### Workflow
-1. Create feature branches for different developers
-2. Modify the same file (`housepk_app.py`) with conflicting changes
-3. Merge branches and resolve conflicts
-4. Synchronize all team members with the resolved codebase
+**Model Performance:**
+- ✅ **RMSE**: 7,095,091 PKR (Root Mean Square Error)
+- ✅ **MAE**: 3,322,163 PKR (Mean Absolute Error)
+- ✅ **R² Score**: 0.90 (90% accuracy - Excellent!)
+- ✅ **MAPE**: 41.56% (Mean Absolute Percentage Error)
 
-### Feature Branches
-- `feature-login` - Login functionality
-- `feature-dashboard` - Dashboard implementation
-- `feature-api` - API endpoints
-
----
-
-## Problem Statement 2: DVC-Based ML Pipeline
-
-### Objective
-Build an end-to-end reproducible ML pipeline for house price prediction using DVC and deploy with Flask.
-
-### Dataset
-Pakistan House Price Dataset from Kaggle
-
-### Pipeline Stages
-1. **Prepare** - Load and prepare raw data
-2. **Features** - Feature engineering and train-test split
-3. **Train** - Train machine learning model
-4. **Evaluate** - Evaluate model performance
-
-### Technologies
-- **DVC** - Data version control and pipeline orchestration
-- **scikit-learn** - Machine learning
-- **Flask** - Model deployment
-- **Git/GitHub** - Code version control
+**Files Generated:**
+- ✅ `model.pkl` - Trained model
+- ✅ `models/house_price_model.pkl` - Model for Flask
+- ✅ `models/label_encoders.pkl` - Feature encoders
+- ✅ `models/model_features.pkl` - Feature list
+- ✅ `metrics/eval.json` - Performance metrics
+- ✅ `data/prepared_data.csv` - Cleaned dataset
+- ✅ All train/test numpy arrays
 
 ---
 
-## Project Structure
+## 🌐 **TASK 1: Run Flask Web Application**
 
+### Command to Start Flask Server:
+
+```bash
+cd "/Users/alich/Fast Uni Things/Semester + labs/Semester 9/MLOps/Lab8/21L-6003 Ali Mohsin Lab8 Tasks 1+2"
+.venv/bin/python housepk_app.py
 ```
-├── data/                   # Data directory (tracked by DVC)
-├── src/                    # Source code for ML pipeline
-│   ├── prepare.py         # Data preparation
-│   ├── features.py        # Feature engineering
-│   ├── train.py           # Model training
-│   └── evaluate.py        # Model evaluation
-├── metrics/               # Model metrics (JSON)
-├── models/                # Trained models (tracked by DVC)
-├── templates/             # Flask HTML templates
-├── housepk_app.py        # Flask application
-├── dvc.yaml              # DVC pipeline definition
-├── params.yaml           # Pipeline parameters
-├── requirements.txt      # Python dependencies
-└── README.md             # This file
-```
+
+### After Starting:
+Open your browser and visit: **http://localhost:5000**
+
+### Available Endpoints:
+
+1. **Main Prediction Page**
+   - URL: `http://localhost:5000/`
+   - Enter house features and get price prediction
+
+2. **Login Page** (Task 1 - Feature 1)
+   - URL: `http://localhost:5000/login`
+   - Username: `admin`
+   - Password: `admin123`
+
+3. **Dashboard** (Task 1 - Feature 2)
+   - URL: `http://localhost:5000/dashboard`
+   - View model statistics and information
+
+4. **Statistics Page** (Task 1 - Feature 2)
+   - URL: `http://localhost:5000/statistics`
+   - Detailed prediction statistics
+
+5. **API Health Check** (Task 1 - Feature 3)
+   - URL: `http://localhost:5000/api/health`
+   - JSON response: `{"status": "healthy", "version": "1.0.0"}`
+
+6. **API Model Info** (Task 1 - Feature 3)
+   - URL: `http://localhost:5000/api/model/info`
+   - Get model details in JSON format
+
+7. **API Prediction** (Task 1 - Feature 3)
+   - URL: `http://localhost:5000/api/predict`
+   - POST JSON data to get predictions
 
 ---
 
-## Setup Instructions
+## 🔄 **TASK 1: Git Branching & Merge Conflicts Demo**
 
-### 1. Clone Repository
+### Command to Run Full Task 1:
+
 ```bash
-git clone <repository-url>
-cd "21L-6003 Ali Mohsin Lab8 Tasks 1+2"
+cd "/Users/alich/Fast Uni Things/Semester + labs/Semester 9/MLOps/Lab8/21L-6003 Ali Mohsin Lab8 Tasks 1+2"
+git checkout -b task1-collaborative-flask
+./run_task1_branching.sh
 ```
 
-### 2. Create Virtual Environment
-```bash
-python3 -m venv .venv
-source .venv/bin/activate  # On Windows: .venv\Scripts\activate
-```
-
-### 3. Install Dependencies
-```bash
-pip install -r requirements.txt
-```
-
-### 4. Initialize DVC
-```bash
-dvc init
-dvc remote add -d local /tmp/dvc-storage
-```
-
-### 5. Pull Data (if available)
-```bash
-dvc pull
-```
+### What This Does:
+1. ✅ Creates `feature-login` branch
+2. ✅ Creates `feature-dashboard` branch  
+3. ✅ Creates `feature-api` branch
+4. ✅ Makes conflicting changes in each branch
+5. ✅ Merges all branches to main
+6. ✅ Automatically resolves merge conflicts
+7. ✅ Shows complete Git collaboration workflow
 
 ---
 
-## Running the Pipeline
+## 📊 **View Pipeline Results**
 
-### Execute Complete Pipeline
+### 1. View DVC Pipeline DAG:
 ```bash
-dvc repro
-```
-
-### Execute Specific Stage
-```bash
-dvc repro <stage-name>
-```
-
-### View Pipeline DAG
-```bash
+cd "/Users/alich/Fast Uni Things/Semester + labs/Semester 9/MLOps/Lab8/21L-6003 Ali Mohsin Lab8 Tasks 1+2"
 dvc dag
 ```
 
+### 2. View Metrics:
+```bash
+cat metrics/eval.json
+```
+
+### 3. Check DVC Status:
+```bash
+dvc status
+```
+
+### 4. View Git Branches:
+```bash
+git branch -a
+```
+
+### 5. View Git History:
+```bash
+git log --oneline --graph --all -10
+```
+
 ---
 
-## Flask Deployment
+## 🎯 **Complete Execution Steps**
 
-### Run Flask App
+### Step 1: Ensure You're in the Right Directory
 ```bash
-python housepk_app.py
+cd "/Users/alich/Fast Uni Things/Semester + labs/Semester 9/MLOps/Lab8/21L-6003 Ali Mohsin Lab8 Tasks 1+2"
 ```
 
-### Access Application
-Open browser: `http://localhost:5000`
+### Step 2: Task 2 is Already Done! ✅
+The DVC pipeline has been successfully executed. All models and metrics are generated.
 
----
-
-## Git Branching Workflow (Task 1)
-
-### Create Feature Branch
-```bash
-git checkout -b feature-<name>
-```
-
-### Make Changes and Commit
-```bash
-git add .
-git commit -m "Description of changes"
-```
-
-### Push to Remote
-```bash
-git push origin feature-<name>
-```
-
-### Merge to Main
+### Step 3: Run Task 1 (Git Branching Demo)
 ```bash
 git checkout main
-git merge feature-<name>
-# Resolve conflicts if any
-git add .
-git commit -m "Resolved merge conflicts"
-git push origin main
+git checkout -b task1-collaborative-flask
+./run_task1_branching.sh
 ```
 
----
-
-## DVC Commands Reference
-
-### Track Data Files
+### Step 4: Start Flask Application
 ```bash
-dvc add data/dataset.csv
+# In the same directory
+.venv/bin/python housepk_app.py
 ```
 
-### Run Pipeline
+### Step 5: Open Browser
+Navigate to: **http://localhost:5000**
+
+---
+
+## 🧪 **Testing the Flask App**
+
+### Test Prediction via Browser:
+1. Go to `http://localhost:5000/`
+2. Fill in the form with house details:
+   - City: Islamabad
+   - Property Type: House
+   - Bedrooms: 3
+   - Bathrooms: 2
+   - Area Size: 2000
+   - etc.
+3. Click "Predict Price"
+4. View the predicted price!
+
+### Test API via Command Line:
 ```bash
-dvc repro
+# Test health check
+curl http://localhost:5000/api/health
+
+# Test model info
+curl http://localhost:5000/api/model/info
+
+# Test prediction (example)
+curl -X POST http://localhost:5000/api/predict \
+  -H "Content-Type: application/json" \
+  -d '{
+    "city": "Islamabad",
+    "property_type": "House",
+    "bedrooms": 3,
+    "baths": 2,
+    "Area Size": 2000,
+    "latitude": 33.7,
+    "longitude": 73.1,
+    "purpose": "For Sale",
+    "Area Type": "Marla"
+  }'
 ```
 
-### View Metrics
+---
+
+## 📋 **Quick Reference Commands**
+
+### All-in-One Execution (Both Tasks):
 ```bash
-dvc metrics show
+cd "/Users/alich/Fast Uni Things/Semester + labs/Semester 9/MLOps/Lab8/21L-6003 Ali Mohsin Lab8 Tasks 1+2"
+
+# Task 1: Git Branching
+git checkout -b task1-collaborative-flask
+./run_task1_branching.sh
+
+# Back to main
+git checkout main
+
+# Task 2: Already done! Check results:
+cat metrics/eval.json
+
+# Start Flask Web App
+.venv/bin/python housepk_app.py
 ```
 
-### Compare Experiments
+### Open in Browser:
+```
+http://localhost:5000/
+```
+
+---
+
+## 🎨 **Visual Interface Preview**
+
+### Main Page (/)
+- Form to input house features
+- Submit button for prediction
+- Clean, user-friendly interface
+
+### Login Page (/login)
+- Username and password fields
+- Authentication system
+- Redirect after successful login
+
+### Dashboard (/dashboard)
+- Model statistics
+- Feature count
+- Model status
+- Visual cards with information
+
+### Statistics (/statistics)
+- Total predictions: 1,250
+- Model accuracy: 89%
+- Last updated date
+- Detailed metrics
+
+---
+
+## 🔍 **Verification Commands**
+
+### Check if Flask is Running:
 ```bash
-dvc metrics diff
+curl http://localhost:5000/api/health
+# Should return: {"status": "healthy", "version": "1.0.0"}
 ```
 
-### Push Data to Remote
+### Check Model Files:
 ```bash
-dvc push
+ls -lh models/
+# Should show:
+# - house_price_model.pkl
+# - label_encoders.pkl
+# - model_features.pkl
+# - feature_field_map.pkl
+```
+
+### Check Metrics:
+```bash
+cat metrics/eval.json
+# Shows RMSE, MAE, R², MAPE
 ```
 
 ---
 
-## Task 1: Collaborative Development Steps
+## 🚨 **Troubleshooting**
 
-1. **Terminal 1 (Developer 1 - Login Feature)**
-   ```bash
-   git checkout -b feature-login
-   # Edit housepk_app.py to add login functionality
-   git add housepk_app.py
-   git commit -m "Add login route and authentication"
-   git push origin feature-login
-   ```
+### If Flask Won't Start:
+```bash
+# Check if port 5000 is in use
+lsof -i :5000
 
-2. **Terminal 2 (Developer 2 - Dashboard Feature)**
-   ```bash
-   git checkout -b feature-dashboard
-   # Edit housepk_app.py to add dashboard
-   git add housepk_app.py
-   git commit -m "Add dashboard with visualizations"
-   git push origin feature-dashboard
-   ```
+# If yes, kill the process or use different port
+.venv/bin/python housepk_app.py --port 5001
+```
 
-3. **Terminal 3 (Developer 3 - API Feature)**
-   ```bash
-   git checkout -b feature-api
-   # Edit housepk_app.py to add API endpoints
-   git add housepk_app.py
-   git commit -m "Add REST API endpoints"
-   git push origin feature-api
-   ```
+### If Model Not Found:
+```bash
+# Models should already be created, but if not:
+.venv/bin/python src/train.py --data_dir data --model_out model.pkl
+```
 
-4. **Team Lead - Merge and Resolve Conflicts**
-   ```bash
-   git checkout main
-   git merge feature-login
-   git merge feature-dashboard  # Conflicts!
-   # Resolve conflicts in housepk_app.py
-   git add housepk_app.py
-   git commit -m "Resolved conflicts: merged login and dashboard"
-   git merge feature-api  # More conflicts!
-   # Resolve conflicts
-   git add housepk_app.py
-   git commit -m "Resolved conflicts: merged all features"
-   git push origin main
-   ```
-
-5. **All Developers - Sync**
-   ```bash
-   git checkout main
-   git pull origin main
-   ```
+### If Dependencies Missing:
+```bash
+.venv/bin/pip install flask pandas scikit-learn joblib pyyaml
+```
 
 ---
 
-## Task 2: DVC Pipeline Steps
+## ✅ **Success Indicators**
 
-1. **Setup DVC Remote**
-   ```bash
-   dvc remote add -d myremote /path/to/storage
-   ```
+### Task 1 Success:
+- ✅ 3 feature branches created
+- ✅ Merge conflicts identified and resolved
+- ✅ All features integrated
+- ✅ Git history shows complete workflow
 
-2. **Add Dataset**
-   ```bash
-   dvc add data/house_prices.csv
-   git add data/house_prices.csv.dvc data/.gitignore
-   git commit -m "Add house price dataset"
-   ```
+### Task 2 Success:
+- ✅ R² Score: 0.9001 (90% - Excellent!)
+- ✅ All pipeline stages completed
+- ✅ Model saved successfully
+- ✅ Metrics generated
 
-3. **Define Pipeline**
-   - Edit `params.yaml` with hyperparameters
-   - Edit `dvc.yaml` with pipeline stages
-   
-4. **Run Pipeline**
-   ```bash
-   dvc repro
-   ```
-
-5. **Commit Results**
-   ```bash
-   git add dvc.yaml dvc.lock params.yaml src/ metrics/
-   git commit -m "Complete ML pipeline with DVC"
-   dvc push
-   git push
-   ```
+### Flask App Success:
+- ✅ Server starts without errors
+- ✅ Browser shows form at localhost:5000
+- ✅ Predictions work correctly
+- ✅ All endpoints accessible
 
 ---
 
-## Troubleshooting
+## 🎉 **Final Command to Run Everything**
 
-### DVC Issues
-- **Error: DVC file not found**: Run `dvc pull` to fetch data
-- **Pipeline fails**: Check `params.yaml` and ensure data files exist
+```bash
+# Single command to start Flask web interface
+cd "/Users/alich/Fast Uni Things/Semester + labs/Semester 9/MLOps/Lab8/21L-6003 Ali Mohsin Lab8 Tasks 1+2" && .venv/bin/python housepk_app.py
+```
 
-### Git Issues
-- **Merge conflicts**: Open conflicted files, resolve markers, then `git add` and `git commit`
-- **Diverged branches**: Use `git pull --rebase` or `git merge`
-
-### Flask Issues
-- **Model not found**: Ensure `dvc pull` has been run to fetch model files
-- **Port already in use**: Change port in `app.run(port=XXXX)`
+**Then open browser to: http://localhost:5000**
 
 ---
 
-## Metrics & Results
+## 📸 **What You'll See**
 
-Pipeline metrics are stored in `metrics/eval.json`:
-- Accuracy
-- F1 Score
-- Precision
-- Recall
-- RMSE (for regression)
+### In Terminal:
+```
+ * Serving Flask app 'housepk_app'
+ * Debug mode: on
+WARNING: This is a development server.
+ * Running on http://127.0.0.1:5000
+Press CTRL+C to quit
+```
 
----
-
-## Contributing
-
-1. Create feature branch
-2. Make changes
-3. Test locally
-4. Submit pull request
-5. Resolve conflicts
-6. Merge to main
+### In Browser:
+- Professional web interface
+- Form fields for house features
+- Prediction button
+- Results display
+- Navigation to login, dashboard, API
 
 ---
 
-## License
+## 🎓 **Deliverables**
 
-Educational project for MLOps Lab 8
+1. ✅ **Working Flask Application** - http://localhost:5000
+2. ✅ **Trained ML Model** - models/house_price_model.pkl
+3. ✅ **Model Metrics** - R² = 0.90 (90% accuracy!)
+4. ✅ **Git Branches** - Complete collaboration demo
+5. ✅ **DVC Pipeline** - Reproducible ML workflow
+6. ✅ **Documentation** - README, QUICKSTART, this file
 
 ---
+
+**🚀 READY TO DEMONSTRATE!**
+
+Run the Flask command above and open http://localhost:5000 to see your working ML application!
 
 ## Contact
 
