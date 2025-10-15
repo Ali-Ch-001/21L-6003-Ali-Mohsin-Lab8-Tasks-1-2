@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Prediction Result - House Price Predictor</title>
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            max-width: 800px; 
+            margin: 50px auto; 
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        h1 { 
+            color: #2c3e50; 
+            margin-bottom: 10px;
+        }
+        .result-box {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            border-radius: 10px;
+            margin: 30px 0;
+        }
+        .result-box h2 {
+            margin: 0;
+            font-size: 24px;
+            font-weight: normal;
+        }
+        .result-box .price {
+            font-size: 48px;
+            font-weight: bold;
+            margin: 20px 0;
+        }
+        .result-box .currency {
+            font-size: 20px;
+            opacity: 0.9;
+        }
+        .info {
+            background-color: #e8f4f8;
+            border-left: 4px solid #3498db;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 5px;
+            text-align: left;
+        }
+        .info p {
+            margin: 5px 0;
+            color: #2c3e50;
+        }
+        .buttons {
+            margin-top: 30px;
+        }
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            margin: 5px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+        .btn-primary {
+            background-color: #3498db;
+            color: white;
+        }
+        .btn-primary:hover {
+            background-color: #2980b9;
+        }
+        .btn-secondary {
+            background-color: #95a5a6;
+            color: white;
+        }
+        .btn-secondary:hover {
+            background-color: #7f8c8d;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎯 Prediction Result</h1>
+        
+        <div class="result-box">
+            <h2>Estimated Property Price</h2>
+            <div class="price">
+                {{ "{:,.2f}".format(prediction) }}
+            </div>
+            <div class="currency">PKR (Pakistani Rupees)</div>
+        </div>
+
+        <div class="info">
+            <p><strong>ℹ️ About this prediction:</strong></p>
+            <p>• This estimate is based on our machine learning model trained on 165,444 properties</p>
+            <p>• Model accuracy (R² score): 90.01%</p>
+            <p>• Average prediction error: ±3.3 million PKR</p>
+            <p>• Actual prices may vary based on market conditions and specific property features</p>
+        </div>
+
+        <div class="buttons">
+            <a href="/" class="btn btn-primary">🔄 Make Another Prediction</a>
+            <a href="/dashboard" class="btn btn-secondary">📊 View Dashboard</a>
+        </div>
+    </div>
+</body>
+</html>

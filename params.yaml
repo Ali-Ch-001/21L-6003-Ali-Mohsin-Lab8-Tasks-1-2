@@ -17,8 +17,6 @@ features:
     - 'bedrooms'
     - 'baths'
     - 'Area Size'
-    - 'latitude'
-    - 'longitude'
 
 train:
   model_type: 'RandomForest'  # RandomForest, GradientBoosting, or LinearRegression

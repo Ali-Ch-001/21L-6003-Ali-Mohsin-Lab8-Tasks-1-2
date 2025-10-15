@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>House Price Predictor - Pakistan</title>
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            max-width: 800px; 
+            margin: 50px auto; 
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 { 
+            color: #2c3e50; 
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        .subtitle {
+            text-align: center;
+            color: #7f8c8d;
+            margin-bottom: 30px;
+        }
+        .form-group { 
+            margin-bottom: 20px; 
+        }
+        label { 
+            display: block; 
+            margin-bottom: 5px; 
+            font-weight: bold;
+            color: #34495e;
+        }
+        input[type="number"], select { 
+            width: 100%; 
+            padding: 10px; 
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+            box-sizing: border-box;
+        }
+        input[type="number"]:focus, select:focus {
+            outline: none;
+            border-color: #3498db;
+        }
+        button { 
+            width: 100%;
+            padding: 12px; 
+            background-color: #3498db; 
+            color: white; 
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        button:hover { 
+            background-color: #2980b9; 
+        }
+        .links {
+            text-align: center;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid #ecf0f1;
+        }
+        .links a {
+            color: #3498db;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+        .links a:hover {
+            text-decoration: underline;
+        }
+        .info-box {
+            background-color: #e8f4f8;
+            border-left: 4px solid #3498db;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+        .info-box p {
+            margin: 5px 0;
+            color: #2c3e50;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🏠 House Price Predictor</h1>
+        <p class="subtitle">Enter property details to get an estimated price in PKR</p>
+        
+        <div class="info-box">
+            <p><strong>Model Information:</strong></p>
+            <p>✓ Trained on 165,444 properties from Pakistan</p>
+            <p>✓ Model Accuracy (R²): 90.01%</p>
+            <p>✓ Using RandomForest Regression</p>
+        </div>
+
+        <form method="POST" action="/predict">
+            {% for feature in feature_meta %}
+            <div class="form-group">
+                <label for="{{ feature.field }}">{{ feature.field.replace('_', ' ').title() }}</label>
+                {% if feature.type == 'categorical' %}
+                <select name="{{ feature.field }}" id="{{ feature.field }}" required>
+                    <option value="">-- Select {{ feature.field.replace('_', ' ').title() }} --</option>
+                    {% for option in feature.options %}
+                    <option value="{{ option }}">{{ option }}</option>
+                    {% endfor %}
+                </select>
+                {% else %}
+                <input 
+                    type="number" 
+                    name="{{ feature.field }}" 
+                    id="{{ feature.field }}" 
+                    step="any" 
+                    placeholder="Enter {{ feature.field.replace('_', ' ').lower() }}"
+                    required
+                >
+                {% endif %}
+            </div>
+            {% endfor %}
+            
+            <button type="submit">🔮 Predict Price</button>
+        </form>
+
+        <div class="links">
+            <a href="/dashboard">📊 Dashboard</a>
+            <a href="/statistics">📈 Statistics</a>
+        </div>
+    </div>
+</body>
+</html>

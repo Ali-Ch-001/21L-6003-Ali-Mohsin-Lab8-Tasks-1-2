@@ -21,9 +21,9 @@ def prepare_data(dataset_path, out_dir, random_seed):
     print(f"   Original shape: {df.shape}")
     print(f"   Columns: {list(df.columns)}")
     
-    # Select relevant columns
+    # Select relevant columns (excluding latitude and longitude)
     columns_to_keep = ['city', 'property_type', 'price', 'baths', 'bedrooms', 
-                      'purpose', 'latitude', 'longitude', 'Area Type', 'Area Size']
+                      'purpose', 'Area Type', 'Area Size']
     
     df = df[columns_to_keep]
     
