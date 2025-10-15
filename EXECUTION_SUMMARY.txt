@@ -196,45 +196,5 @@ Task 2: DVC-Based ML Pipeline
   ✅ Experiment tracking
   ✅ Flask deployment
 
-═══════════════════════════════════════════════════════════════════════════
-                           💡 NEXT STEPS
-═══════════════════════════════════════════════════════════════════════════
-
-1. Execute the implementation:
-   ./run_lab8_with_branches.sh  # Select option 3
-
-2. Review the results:
-   - Check Git history: git log --graph --all --oneline
-   - View metrics: cat metrics/eval.json
-   - Inspect pipeline: dvc dag
-
-3. Test Flask deployment:
+Test Flask deployment:
    python housepk_app.py
-
-4. Push to GitHub (if remote is configured):
-   git push origin main
-   git push origin task1-collaborative-flask
-   git push origin task2-dvc-pipeline
-   dvc push
-
-═══════════════════════════════════════════════════════════════════════════
-                           📞 SUPPORT & DOCUMENTATION
-═══════════════════════════════════════════════════════════════════════════
-
-📖 Read QUICKSTART.md for detailed step-by-step guide
-📖 Read README.md for complete project documentation
-🔧 Check .gitignore and .dvcignore for tracked files
-📊 Review params.yaml for hyperparameters
-🌳 Run 'dvc dag' to visualize pipeline
-
-═══════════════════════════════════════════════════════════════════════════
-                           ✨ READY TO EXECUTE!
-═══════════════════════════════════════════════════════════════════════════
-
-Run this command to start:
-
-    ./run_lab8_with_branches.sh
-
-Then select option 3 for complete execution of both tasks!
-
-═══════════════════════════════════════════════════════════════════════════

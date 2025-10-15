@@ -3,18 +3,66 @@
 <head>
     <title>Prediction Result - House Price Predictor</title>
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
         body { 
-            font-family: Arial, sans-serif; 
-            max-width: 800px; 
-            margin: 50px auto; 
-            padding: 20px;
-            background-color: #f5f5f5;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding-top: 70px;
+        }
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            z-index: 1000;
+        }
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 30px;
+        }
+        .nav-brand {
+            font-size: 24px;
+            font-weight: bold;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .nav-links {
+            display: flex;
+            gap: 25px;
+            align-items: center;
+        }
+        .nav-links a {
+            color: #2c3e50;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 8px 15px;
+            border-radius: 5px;
+            transition: all 0.3s;
+        }
+        .nav-links a:hover {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
         }
         .container {
+            max-width: 800px;
+            margin: 30px auto;
             background: white;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
             text-align: center;
         }
         h1 { 
@@ -80,9 +128,32 @@
         .btn-secondary:hover {
             background-color: #7f8c8d;
         }
+        .footer {
+            text-align: center;
+            color: white;
+            padding: 20px;
+            margin-top: 30px;
+        }
+        .footer a {
+            color: white;
+            text-decoration: underline;
+        }
     </style>
 </head>
 <body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">🏠 House Price ML</div>
+            <div class="nav-links">
+                <a href="/">🏡 Home</a>
+                <a href="/dashboard">📊 Dashboard</a>
+                <a href="/statistics">📈 Statistics</a>
+                <a href="/login">🔐 Login</a>
+                <a href="/api/v1/health" target="_blank">🔌 API</a>
+            </div>
+        </div>
+    </nav>
+
     <div class="container">
         <h1>🎯 Prediction Result</h1>
         
@@ -106,6 +177,10 @@
             <a href="/" class="btn btn-primary">🔄 Make Another Prediction</a>
             <a href="/dashboard" class="btn btn-secondary">📊 View Dashboard</a>
         </div>
+    </div>
+
+    <div class="footer">
+        <p>MLOps Lab 8 - 21L-6003 Ali Mohsin | <a href="https://github.com/Ali-Ch-001/21L-6003-Ali-Mohsin-Lab8-Tasks-1-2" target="_blank">GitHub Repository</a></p>
     </div>
 </body>
 </html>
