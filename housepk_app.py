@@ -2,7 +2,7 @@
 import os
 import joblib
 import numpy as np
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, session, flash
 
 APP_ROOT = os.path.dirname(__file__)
 MODEL_DIR = os.path.join(APP_ROOT, "models")
@@ -34,6 +34,34 @@ for feat in feature_list:
             "type": "numeric",
             "options": None
         })
+
+app = Flask(__name__)
+app.config['TEMPLATES_AUTO_RELOAD'] = True
+app.secret_key = 'dev_secret_key_12345'  # Developer 1 added this
+
+# Developer 1: Added login functionality
+@app.route("/login", methods=["GET", "POST"])
+def login():
+    """Login route added by Developer 1"""
+    if request.method == "POST":
+        username = request.form.get("username")
+        password = request.form.get("password")
+        # Simple authentication (demo only)
+        if username == "admin" and password == "admin123":
+            session['logged_in'] = True
+            session['username'] = username
+            flash("Login successful!", "success")
+            return redirect(url_for("index"))
+        else:
+            flash("Invalid credentials", "error")
+    return render_template("login.html")
+
+@app.route("/logout")
+def logout():
+    """Logout route added by Developer 1"""
+    session.clear()
+    flash("Logged out successfully", "info")
+    return redirect(url_for("login"))
 
 app = Flask(__name__)
 app.config['TEMPLATES_AUTO_RELOAD'] = True
@@ -101,6 +129,41 @@ def api_predict():
     X = np.array(row).reshape(1, -1)
     pred = model.predict(X)[0]
     return {"prediction": float(pred)}
+
+@app.route("/dashboard")
+def dashboard():
+    model_info = {
+        "model_type": "RandomForest Regressor",
+        "features": len(feature_list),
+        "status": "Active and Ready"
+    }
+    return render_template("dashboard.html", model_info=model_info)
+
+@app.route("/statistics")
+def statistics():
+    # Load evaluation metrics
+    import json
+    metrics_path = os.path.join(APP_ROOT, "metrics", "eval.json")
+    if os.path.exists(metrics_path):
+        with open(metrics_path, "r") as f:
+            metrics = json.load(f)
+    else:
+        metrics = {
+            "rmse": "N/A",
+            "mae": "N/A",
+            "r2": "N/A",
+            "mape": "N/A"
+        }
+    
+    stats = {
+        "training_samples": 132355,
+        "test_samples": 33089,
+        "total_features": len(feature_list),
+        "categorical_features": len([f for f in feature_list if f in label_encoders]),
+        "numeric_features": len([f for f in feature_list if f not in label_encoders]),
+        "metrics": metrics
+    }
+    return render_template("statistics.html", stats=stats)
 
 if __name__ == "__main__":
     app.run(debug=True, port=5000)
