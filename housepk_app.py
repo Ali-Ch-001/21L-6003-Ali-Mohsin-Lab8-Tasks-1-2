@@ -1,5 +1,5 @@
-# app.py - Enhanced Styling Version
-# Developer 1: Updated with modern UI theme
+# app.py - Analytics Dashboard
+# Developer 2: Added advanced analytics capabilities
 import os
 import joblib
 import numpy as np
@@ -7,7 +7,8 @@ from flask import Flask, render_template, request, redirect, url_for, session, f
 
 APP_ROOT = os.path.dirname(__file__)
 MODEL_DIR = os.path.join(APP_ROOT, "models")
-APP_TITLE = "House Price Predictor - Premium Edition"
+APP_TITLE = "House Price Analytics Platform"
+ENABLE_ANALYTICS = True
 
 # Developer 2: Added API configuration
 API_VERSION = "v1"
